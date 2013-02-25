@@ -3,20 +3,33 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0" />
-	<title>360</title>
-	<link rel="stylesheet" href="css/reset.css" media="screen" type="text/css" />
+	<title>360 Image Slider</title>
 	<link rel="stylesheet" href="css/threesixty.css" media="screen" type="text/css" />
+    <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css' />
+    <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js' type='text/javascript'></script>
+    <script src="js/heartcode-canvasloader-min.js"type='text/javascript'></script>
+	<script src="js/threesixty.js"type='text/javascript'></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$("#helmet").threesixty({ 
+				'imageUrl': 'img/helmet_spin_.{0}.jpg', 
+				'imageNumberPadding': 2, 
+				'startFrame': 1, 
+				'loadedSpins': 2, 
+				'loadingSpinnerColor': '#ffffff' 
+				});
+		});
+	</script>
 </head>
-<body>
-	<div id="threesixty">
-		<div id="spinner">
-			<span>0%</span>
-		</div>
-		<ol id="threesixty_images"></ol>
-	</div>
-	
-	<script src="js/heartcode-canvasloader-min.js"></script>
-	<script src="js/jquery-1.7.min.js"></script>
-	<script src="js/threesixty.js"></script>
+<body style="background-color: #dedede; font-family: 'PT Sans'">
+	<div style="padding: 30px;">
+    	<h1>360 Image Slider</h1>
+        <p>Update to <a href="http://heartcode.robertpataki.com/360-image-slider/" target="_blank">heartcode's image slider</a> converting it to a plugin that allows easily displaying 3D application turntables on the web.  See page source for example call to the threesixty plugin.</p>
+        <br />
+        <div id="helmet" style="width: 700px; height: 700px;">		
+        </div>
+        <br />
+        <p>For more info on what the heck this helmet is see the <a href="http://blog.souledesigns.com/2013/02/master-of-moondog-part-3.html" target="_blank">Soule Designs Blog</a>.</p>
+    </div>
 </body>
 </html>

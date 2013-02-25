@@ -11,13 +11,14 @@
   $.fn.threesixty = function( options ) {  
 
     // Create some defaults, extending them with any options that were provided
-    var settings = $.extend( {
-      'startFrame'  		: 0,
-      'totalFrames' 		: 30,
-	  'imageUrl'			: '',
-	  'imageNumberPadding' 	:  0,
-	  'loadedSpins'			:  1,
-	  'loadingSpinnerColor'	:  '#98A580'
+    var settings = $.extend( { 
+      'startFrame'  			: 0,
+      'totalFrames' 			: 30,
+	  'imageUrl'				: '',
+	  'imageNumberPadding' 		:  0,
+	  'loadedSpins'				:  1,
+	  'loadingBackgroundColor'	: 'rgb(32,32,35)',
+	  'loadingSpinnerColor'		:  '#98A580'
     }, options);
 
     return this.each(function() {        
@@ -65,7 +66,9 @@
 			// Number of times the animation spins when it is initially loaded
 			loadedSpins = settings.loadedSpins,
 			// Color of the loading spinner
-			spinnerColor = settings.loadingSpinnerColor;
+			spinnerColor = settings.loadingSpinnerColor,
+			// Background color to display behind loading spinner, will also show should the images contain alpha transparency
+			spinnerBackgroundColor = settings.loadingBackgroundColor;
     
 	
 		// Fire it up!
@@ -82,6 +85,7 @@
 			// Setup html - done to allow basic container element without need to repeat this html 
 			// everytime the plug is used
 			$this.addClass("threesixty");
+			$this.css("backgroundColor", spinnerBackgroundColor);
 			$this.append("<div id=" + spinnerId + " class='spinner'><span style='color:" + spinnerColor + ";'>0%</span></div><ol class='threesixty_images'></ol>");
 			
 			// Add progress spinner	

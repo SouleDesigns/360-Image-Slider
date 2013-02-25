@@ -1,3 +1,7 @@
+This is SouleDesigns update to the original 360 Image Slider.  Editing to enable more easily displaying 3D application turntables on the web by converting it to a plugin, removing the hard-coded id tags, etc.   Also, added common configuration options.  See plugin for option descriptions and index.html for example usage.
+
+Original README below...
+
 # 360 Image Slider
 
 The 360 Image Slider was a experimental project, which I worked on when I was writing a javascript tutorial for .net Magazine (issue #224).
