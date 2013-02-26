@@ -14,6 +14,11 @@
 	margin: 0;
 }
 
+.threesixty ol li, .threesixty ol li img {
+	padding: 0;
+	margin: 0;
+}
+
 /*
 	Makes the image slider invisible by default
 */
