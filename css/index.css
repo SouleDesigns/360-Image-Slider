@@ -38,7 +38,7 @@ p {
 	display: block;
 	width: 190px;
 	font-size: 14px;
-	background-color: rgb(81, 88, 67);
+	background-color: #7A5829;
 	color: #FFF;
 	word-spacing: 2px;
 	text-decoration: none;
@@ -71,7 +71,7 @@ p {
 	clear: both;
 }
 
-#helmet { 
+#sample { 
 	height: 700px; 
 	width: 700px; 
 }
@@ -83,7 +83,7 @@ p {
 }
 
 #soule-designs {
-	background: transparent url('../img/soule-designs.png') no-repeat 0px 0px;
+	background: transparent url(../img/soule-designs.png) no-repeat 0px 0px;
 	cursor: hand;
 	cursor: pointer;
 	float: left;
