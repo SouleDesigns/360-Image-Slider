@@ -1,0 +1,97 @@
+/* Simple styles used on demonstartion plugin to page */
+a { 
+	color: #7A5829; 
+}
+
+body { 
+	background: #CCD8BD url(../img/paper.jpg) repeat top center; 
+	color: #666; 
+	font-family: 'Lato'; 
+	line-height: 1.5em;
+}
+
+#header h1 {  
+	color: rgba(81,88,67, 0.75); 
+	float: right;
+	margin: 50px 0px 0px; 
+	text-shadow: 1px 1px 2px #ddd, 0 0 0 #222, 1px 1px 2px #ddd; 
+	font-size: 32px; 
+}
+
+p { 
+	margin: 1em 0 2em; 
+}
+
+#banner{
+	height: 149px;
+	width: 149px;
+	overflow:hidden;
+	padding: 0;
+	margin: 0;
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+#banner a{
+	
+	display: block;
+	width: 190px;
+	font-size: 14px;
+	background-color: rgb(81, 88, 67);
+	color: #FFF;
+	word-spacing: 2px;
+	text-decoration: none;
+	padding: 5px 15px 5px 25px;
+	
+	position:relative;
+	left: 20px;
+	top: -37px;
+	text-align: center;
+	
+	-moz-transform-origin: 0 0 ;
+	-moz-transform:rotate(45deg);
+	-moz-box-shadow:    1px 1px 5px 1px #666;
+	
+	-webkit-transform-origin: 0 0 ;	
+	-webkit-transform:rotate(45deg);
+	-webkit-box-shadow: 1px 1px 5px 1px #666;
+	
+	-ms-transform-origin: 0 0 ;	
+	-ms-transform:rotate(45deg);
+	-ms-box-shadow: 1px 1px 5px 1px #666;
+	
+	transform-origin: 0 0 ;	
+	transform:rotate(45deg);
+	box-shadow: 1px 1px 5px 1px #666;
+		
+}
+
+.clear {
+	clear: both;
+}
+
+#helmet { 
+	height: 700px; 
+	width: 700px; 
+}
+
+#page { 
+	padding: 1em;  
+	width: 700px; 
+	margin: 0px auto; 
+}
+
+#soule-designs {
+	background: transparent url('../img/soule-designs.png') no-repeat 0px 0px;
+	cursor: hand;
+	cursor: pointer;
+	float: left;
+	height: 105px;
+	width: 445px;
+}
+
+#soule-designs img {
+	height: 105px;
+	width: 445px;	
+}
