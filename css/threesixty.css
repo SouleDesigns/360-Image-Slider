@@ -50,6 +50,19 @@
 	width:0;
 }
 /*
+	Drag to spin 360 instructions
+*/
+.spin-360 {
+	position: absolute; 
+	z-index: 999; 
+	top: 0; 
+	left: 0; 
+	background: transparent url(../img/drag-to-spin-360.png) no-repeat 0px 0px; 
+	height: 95px; 
+	width: 95px;
+	display: none;
+}
+/*
 	Sets the dimensions of the CanvasLoader placeholder <div>, it also centeres it horizontally and vertically inside the wrapper and makes it invisible by default
 */
 .spinner {

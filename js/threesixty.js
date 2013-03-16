@@ -191,6 +191,10 @@
 		* image is simply displayed
 		*/
 		function showThreesixty () {
+			// Add drag to spin 360 instructions 
+			$this.append("<div class='spin-360'></div>");
+			$this.find(".spin-360").fadeIn("slow");
+			
 			// Fades in the image slider by using the jQuery "fadeIn" method
 			$this.find(".threesixty_images").fadeIn("slow");
 			// Sets the "ready" variable to true, so the app now reacts to user interaction 
