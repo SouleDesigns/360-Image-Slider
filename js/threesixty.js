@@ -18,7 +18,8 @@
 	  'imageNumberPadding' 		:  0,
 	  'loadedSpins'				:  1,
 	  'loadingBackgroundColor'	: 'rgb(32,32,35)',
-	  'loadingSpinnerColor'		:  '#98A580'
+	  'loadingSpinnerColor'		: '#98A580',
+	  'pluginImageUrl'			: ''
     }, options);
 
     return this.each(function() {        
@@ -68,7 +69,9 @@
 			// Color of the loading spinner
 			spinnerColor = settings.loadingSpinnerColor,
 			// Background color to display behind loading spinner, will also show should the images contain alpha transparency
-			spinnerBackgroundColor = settings.loadingBackgroundColor;
+			spinnerBackgroundColor = settings.loadingBackgroundColor,
+			// Url of directory in which plugin images are stored
+			pluginImageUrl = settings.pluginImageUrl;
     
 	
 		// Fire it up!
@@ -88,6 +91,12 @@
 			$this.css("backgroundColor", spinnerBackgroundColor);
 			$this.append("<div id=" + spinnerId + " class='spinner'><span style='color:" + spinnerColor + ";'>0%</span></div><ol class='threesixty_images'></ol>");
 			
+			// Preload plugin resources
+			var pluginImages = ["closedhand.cur", "drag-to-spin-360.png", "openhand.cur"];
+			$.each(pluginImages, function(index, name) {
+					$('<img/>')[0].src =  pluginImageUrl + name;
+			});
+
 			// Add progress spinner	
 			addSpinner(spinnerId);
 			
@@ -191,16 +200,19 @@
 		* image is simply displayed
 		*/
 		function showThreesixty () {
-			// Add drag to spin 360 instructions 
-			$this.append("<div class='spin-360'></div>");
-			$this.find(".spin-360").fadeIn("slow");
-			
+		
 			// Fades in the image slider by using the jQuery "fadeIn" method
 			$this.find(".threesixty_images").fadeIn("slow");
+			
+			// Add and fade in the drag to spin 360 instructions 
+			$this.append("<div class='spin-360'></div>").find(".spin-360").fadeIn("slow");
+		
 			// Sets the "ready" variable to true, so the app now reacts to user interaction 
 			ready = true;
+			
 			// Sets the endFrame to an initial value to enable or disabled the loaded spin.
 			endFrame =  loadedSpins * totalFrames * -1;
+			
 			refresh();
 		};
 		
@@ -354,6 +366,9 @@
 		* This function only runs if the application is ready and the user really is dragging the pointer; this way we can avoid unnecessary calculations and CPU usage.
 		*/
 		function trackPointer(event) {
+			// Update cursor
+			setCursor();
+			
 			// If the app is ready and the user is dragging the pointer...
 			if (ready && dragging) {
 				// Stores the last x position of the pointer
@@ -373,6 +388,27 @@
 				}
 			}
 		};
+		
+		/**
+		* Set a drag cursor - implemented here rather than in css to allow cross browser compatibility
+		* Linking to google hosted cursors rather than downloading and deploying, could change if so desired.
+		*/
+		function setCursor() {
+			var dragCursor;
+			
+			// IE doesn't support co-ordinates
+			var cursCoords = $.browser.msie ? "" : " 4 4"; 			 
+			if (dragging) {
+				dragCursor = $.browser.mozilla ? "-moz-grabbing" : "url(" + pluginImageUrl + "closedhand.cur)" + cursCoords + ", move";
+				// Opera doesn't support url cursors and doesn't fall back well...
+				if ($.browser.opera) dragCursor = "move";
+			} else {
+				dragCursor = $.browser.mozilla ? "-moz-grab" : "url(" + pluginImageUrl + "openhand.cur)" + cursCoords + ", move";
+			}	
+				
+			// Set cursor
+ 			$this.css("cursor", dragCursor);
+		}
 	
 	});
 
