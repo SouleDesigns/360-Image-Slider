@@ -19,7 +19,7 @@
 	  'loadedSpins'				:  1,
 	  'loadingBackgroundColor'	: 'rgb(32,32,35)',
 	  'loadingSpinnerColor'		: '#98A580',
-	  'pluginImageUrl'			: ''
+	  'pluginImageUrl'			: 'http://www.souledesigns.com/archive/github/360-image-slider/img/'
     }, options);
 
     return this.each(function() {        
@@ -216,11 +216,10 @@
 			refresh();
 		};
 		
-		
 		/**
 		* Renders the image slider frame animations.
 		*/
-		function render () {
+		function render () {			
 			// The rendering function only runs if the "currentFrame" value hasn't reached the "endFrame" one
 			if(currentFrame !== endFrame)
 			{	
@@ -305,6 +304,8 @@
 			pointerStartPosX = getPointerEvent(event).pageX;
 			// Tells the pointer tracking function that the user is actually dragging the pointer and it needs to track the pointer changes
 			dragging = true;
+			// Update cursor
+			setCursor();
 		});
 		
 		/**
@@ -316,6 +317,8 @@
 			event.preventDefault();
 			// Tells the pointer tracking function that the user finished dragging the pointer and it doesn't need to track the pointer changes anymore
 			dragging = false;
+			// Update cursor
+			setCursor();			
 		});
 		
 		/**
@@ -325,6 +328,8 @@
 		$(document).mousemove(function (event){
 			// Prevents the original event handler behaciour
 			event.preventDefault();
+			// Update cursor
+			setCursor();
 			// Starts tracking the pointer X position changes
 			trackPointer(event);
 		});
@@ -366,9 +371,7 @@
 		* This function only runs if the application is ready and the user really is dragging the pointer; this way we can avoid unnecessary calculations and CPU usage.
 		*/
 		function trackPointer(event) {
-			// Update cursor
-			setCursor();
-			
+	
 			// If the app is ready and the user is dragging the pointer...
 			if (ready && dragging) {
 				// Stores the last x position of the pointer
@@ -377,8 +380,11 @@
 				if(monitorStartTime < new Date().getTime() - monitorInt) {
 					// Calculates the distance between the pointer starting and ending position during the last tracking time period
 					pointerDistance = pointerEndPosX - pointerStartPosX;
-					// Calculates the endFrame using the distance between the pointer X starting and ending positions and the "speedMultiplier" values
-					endFrame = currentFrame + Math.ceil((totalFrames - 1) * speedMultiplier * (pointerDistance / $this.width()));
+	
+					// Calculates the endFrame using the distance between the pointer X starting and ending positions and the "speedMultiplier" value
+					var speedMultiplierCalc = (totalFrames - 1) * speedMultiplier * (pointerDistance / $this.width());
+					endFrame = currentFrame + ((pointerDistance < 0) ? Math.floor(speedMultiplierCalc) : Math.ceil(speedMultiplierCalc));
+						
 					// Updates the image slider frame animation
 					refresh();
 					// restarts counting the pointer tracking period
